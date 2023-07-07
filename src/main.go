@@ -7,10 +7,19 @@ import (
 	"os"
 	"os/signal"
 	"time"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
 	log.SetFlags(log.Lshortfile | log.LstdFlags)
+	// LOAD ENVIRONMENT VARIABLES
+	log.Println("Loading environment variables...")
+	err := godotenv.Load()
+	if err != nil {
+		log.Printf("Error loading .env file:: %v", err)
+	}
+	log.Println("Environment variables loaded successfully")
 
 	// CREATE ROUTER
 	log.Println("Creating router...")

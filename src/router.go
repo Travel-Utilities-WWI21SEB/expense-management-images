@@ -5,6 +5,7 @@ import (
 	"expense-management-images/src/handlers"
 	"expense-management-images/src/middlewares"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -33,8 +34,10 @@ func createRouter() *gin.Engine {
 		ImageController: &controllers.ImageController{},
 	}
 
+	imageDirectory := os.Getenv("IMAGE_DIRECTORY")
+
 	router.Handle(http.MethodGet, "/lifecheck", handlers.LifeCheckHandler())
-	router.StaticFS("/images", gin.Dir("/app/images", true))
+	router.StaticFS("/images", gin.Dir(imageDirectory, true))
 	apiv1.Handle(http.MethodPost, "/images", handlers.UploadImageHandler(controller.ImageController))
 
 	return router
