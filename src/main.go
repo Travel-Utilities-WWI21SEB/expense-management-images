@@ -30,7 +30,7 @@ func main() {
 
 	// RUN SERVER
 	go func() {
-		log.Println("Starting server on port 8080...")
+		log.Println("Starting server on port 8082...")
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("Error starting or closing listener:: %v", err)
 		}

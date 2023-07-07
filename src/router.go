@@ -34,8 +34,8 @@ func createRouter() *gin.Engine {
 	}
 
 	router.Handle(http.MethodGet, "/lifecheck", handlers.LifeCheckHandler())
-	apiv1.Handle(http.MethodPost, "/upload", handlers.UploadImageHandler(controller.ImageController))
-	apiv1.Handle(http.MethodGet, "/images/:imageId", handlers.GetImageHandler(controller.ImageController))
+	router.StaticFS("/images", gin.Dir("/app/images", true))
+	apiv1.Handle(http.MethodPost, "/images", handlers.UploadImageHandler(controller.ImageController))
 
 	return router
 }

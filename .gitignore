@@ -12,6 +12,7 @@
 .DS_Store
 .env
 /.idea/*
+/app/images/*
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
